@@ -1,0 +1,29 @@
+<div class=" w-[100%] min-h-[100vh] flex items-center flex-col ">
+    <div class="text-3xl px-[10%] lg:px-[25%] my-6 self-start ">Student Registration Form</div>
+
+    <div
+        class=" bg-[#3b4a40] w-[80%]  h-[70vh] rounded-xl shadow-2xl  lg:w-[50%] lg:h-[80vh] flex flex-col p-8 lg:p-12 text-white relative ">
+        <div  class="text-[#7ffb6c]  text-lg absolute top-2 ">Registered Succesfully!</div>
+        <div class="font-semibold text-2xl">Register with us!</div>
+        <div [ngClass]="{'invisible':!error}" class="text-red-200  text-xs">*Fill all fields</div>
+        <div class="my-[4%] md:my-[3%] flex flex-col space-y-2">
+            <label for="name" class="">Your name</label>
+            <input type="text" id="name" [(ngModel)]="student.name"
+                class="h-12 rounded-xl bg-[#a0bfab]  focus:border-[4px] border-[#354138] text-xl px-5 focus:outline-none">
+        </div>
+
+        <div class="my-[4%] md:my-[3%] flex flex-col space-y-2">
+            <label for="rollnumber" class="">Your roll number</label>
+            <input type="text" id="rollnumber" [(ngModel)]="student.rollnumber"
+                class="h-12 rounded-xl bg-[#a0bfab]  focus:border-[4px] text-xl border-[#354138] focus:outline-none px-5">
+        </div>
+        <div class="my-[4%] md:my-[3%] flex flex-col space-y-2">
+            <label for="email" class="">Your email</label>
+            <input type="email" id="email" [(ngModel)]="student.email"
+                class="h-12 rounded-xl bg-[#a0bfab]  focus:border-[4px] border-[#354138] px-5 text-xl focus:outline-none">
+        </div>
+        <button type="submit"
+            class="bg-[#d32822]  h-10 rounded-lg w-[80%] my-[4%] self-center  lg:h-12 lg:w-[60%] text-xl  focus:outline-none px-5"
+            (click)="onClick()"> Register </button>
+    </div>
+</div>

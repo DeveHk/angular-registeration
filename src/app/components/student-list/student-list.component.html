@@ -1,0 +1,6 @@
+<div class="text-3xl px-20 lg:px-40">All Registered Student</div>
+<div  *ngFor="let stu of studentList; index as i " class="w-[100%] flex justify-center">
+    <div class="w-[80%] lg:w-[60%]">
+    <app-student-list-item [student]="stu" [index]="i"  (reLoadList)="ngOnInit()"></app-student-list-item>
+</div>
+</div>
