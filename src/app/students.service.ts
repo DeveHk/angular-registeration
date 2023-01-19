@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http'
   providedIn: 'root'
 })
 export class StudentsService {
-  url:string="http://localhost:3000/students"
+  url:string="https://register-student-json.onrender.com/students"
   
   constructor(private http: HttpClient) { 
     

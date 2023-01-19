@@ -3,7 +3,7 @@
 
     <div
         class=" bg-[#3b4a40] w-[80%]  h-[70vh] rounded-xl shadow-2xl  lg:w-[50%] lg:h-[80vh] flex flex-col p-8 lg:p-12 text-white relative ">
-        <div  class="text-[#7ffb6c]  text-lg absolute top-2 ">Registered Succesfully!</div>
+        <div [ngClass]="{'hidden':!sub}" class="text-[#7ffb6c]  text-lg absolute top-2 ">Registered Succesfully!</div>
         <div class="font-semibold text-2xl">Register with us!</div>
         <div [ngClass]="{'invisible':!error}" class="text-red-200  text-xs">*Fill all fields</div>
         <div class="my-[4%] md:my-[3%] flex flex-col space-y-2">
