@@ -5,8 +5,8 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class StudentsService {
-  urlStu:string="http://localhost:3001/students"
-  urlAuth:string="http://localhost:3001/auth"
+  urlStu:string="https://students-reg.onrender.com/students"
+  urlAuth:string="https://students-reg.onrender.com/auth"
   httpOptions:any
   constructor(private http: HttpClient) { 
     this.httpOptions = {
