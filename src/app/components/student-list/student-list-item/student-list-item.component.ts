@@ -15,21 +15,4 @@ export class StudentListItemComponent {
   constructor(private stu:StudentsService){
 
   }
-  removeStu=()=>{
-    this.stu.removeStudent(this.student.id).subscribe((result)=>{
-      console.log(result)
-    })
-    this.reLoadList.emit()
-  }
-  updateStu=()=>{
-    this.update=!this.update
-    
-    this.stud=this.student
-    this.stu.updateStudent(this.student.id,this.stud).subscribe((result)=>{
-      console.log(result)
-      console.log(this.student.id)
-    })
- 
-    
-  }
 }

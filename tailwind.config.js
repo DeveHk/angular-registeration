@@ -4,7 +4,10 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
-  },
+    extend: {
+      dropShadow: {
+        'gl' : '#93362F 1px 0 5px'
+      } 
+    },  },
   plugins: [],
 }

@@ -10,6 +10,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import {HttpClientModule} from '@angular/common/http';
 import { StudentListItemComponent } from './components/student-list/student-list-item/student-list-item.component'
 import { FormsModule } from '@angular/forms';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     StudentListComponent,
     StudentLoginComponent,
     NavBarComponent,
-    StudentListItemComponent
+    StudentListItemComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,

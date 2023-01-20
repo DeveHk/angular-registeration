@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Student } from 'src/app/student';
+import { Student, User } from 'src/app/student';
 import { StudentsService } from 'src/app/students.service';
 
 @Component({
@@ -8,31 +8,81 @@ import { StudentsService } from 'src/app/students.service';
   styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent {
-  error:boolean=false
-  student:Student=new Student()
-  studentReset:Student=new Student()
-  sub:boolean=false
-  constructor(private stu:StudentsService){
-
+  error: boolean = false
+  user: User = new User()
+  log: boolean = true
+  accessTocken: string
+  //showpass:boolean=false
+  pass: string
+  errorMsg: string
+  logging: boolean = false
+  
+  constructor(private stu: StudentsService) {
+    this.accessTocken=localStorage.getItem('auth')    
   }
-  ngOnInit(){
-
+  ngOnInit() {
+    
   }
-  onClick=()=>{
-    if(this.student.name && this.student.email && this.student.rollnumber ){
-      this.error=false
-      console.log(this.student)
-      this.stu.addStudent(this.student).subscribe((result)=>{
+
+  signUp = () => {
+    if (this.user.password && this.user.user && this.pass == this.user.password) {
+      this.error = false
+      this.logging = true
+      this.stu.signUp(this.user).subscribe((result: any) => {
+        this.logging = false
+        this.accessTocken = result.accessTocken
+        localStorage.setItem('auth',JSON.stringify(`Bearer ${result.accessTocken}`))
+        this.stu.httpOptions.headers=this.stu.httpOptions.headers.set('authorisation',`Bearer ${result.accessTocken}`)
+        
+
+      },
+        (error) => {
+          this.logging = false
+          this.errorMsg = error.error
+        })
+      /*this.stu.addStudent(this.user).subscribe((result)=>{
         console.log(result)
-      })
-      this.student=this.studentReset
-      this.sub=true
-      setTimeout(() => {
-        this.sub=false
-      }, 1500);
+      })*/
     }
-    else{
-      this.error=true
+    else {
+      this.error = true
     }
   }
+  login = () => {
+    if (this.user.password && this.user.user) {
+      this.error = false
+      this.logging = true
+      this.stu.logIn(this.user).subscribe(
+        (result: any) => {
+          this.logging = false 
+         this.accessTocken = result.accessTocken
+         localStorage.setItem('auth',JSON.stringify(`Bearer ${result.accessTocken}`))
+       
+          this.stu.httpOptions.headers=this.stu.httpOptions.headers.set('authorisation',`Bearer ${result.accessTocken}`)
+      
+        },
+        (error) => {
+          this.logging = false
+          this.errorMsg = error.error
+        })
+      /*this.stu.addStudent(this.user).subscribe((result)=>{
+        console.log(result)
+      })*/
+    }
+    else {
+      this.error = true
+    }
+  }
+  logOut=()=>{
+    localStorage.removeItem("auth")
+    this.accessTocken=null
+    this.stu.httpOptions.headers=this.stu.httpOptions.headers.set('authorisation',``)
+  }
+  toggleLog = () => {
+    this.errorMsg=''
+    this.error = false
+    this.log = !this.log
+  }
+  /*showPass=()=>{this.showpass=!this.showpass
+  console.log('clicked')}*/
 }

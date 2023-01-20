@@ -1,0 +1,62 @@
+<div class="mx-[10%] md:mx-[20%] lg:mx-[25%]">
+    <div class="bg-[#d0e8e1] relative flex flex-col justify-between rounded-lg my-5 px-10 py-2 text-[1.2rem]  ">
+        <div *ngIf="active; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>
+            <div class="flex flex-col lg:justify-around lg:px-[10%]">
+               
+                <div class="font-serif h-8"><span class="font-semibold"> Id:</span>
+                    <div class="pl-5 inline-block"> {{profile.info.id}} </div>
+                </div>
+                <div class="font-serif h-8"><span class="font-semibold"> username:</span>
+                    <div class="pl-5 inline-block"> {{profile.user}} </div>
+                </div>
+                <div class="font-serif h-8"><span class="font-semibold"> name:</span>
+                    <div *ngIf="update; then thenBlock1 else elseBlock1"></div>
+                    <ng-template #thenBlock1>
+                        <input type="text" name="" [(ngModel)]="student.name" [placeholder]="student.name"
+                            class="h-5 rounded-xl bg-[#ffffff]  focus:border-[1px] border-[#C00B09] w-48 text-[1.2rem] px-5 focus:outline-none"
+                            id="">
+                    </ng-template>
+                    <ng-template #elseBlock1>
+                        <div class="pl-5 inline-block"> {{student.name}}</div>
+                    </ng-template>
+                </div>
+                <div class="font-serif h-8"><span class="font-semibold">rollnumber: </span>
+                    <div *ngIf="update; then thenBlock2 else elseBlock2"></div>
+                    <ng-template #thenBlock2>
+                        <input type="text" name="" [(ngModel)]="student.rollnumber" [placeholder]="student.rollnumber"
+                            class="h-5 rounded-xl bg-[#ffffff]  focus:border-[1px] border-[#C00B09] w-48 text-[1.2rem] px-5 focus:outline-none"
+                            id="">
+                    </ng-template>
+                    <ng-template #elseBlock2>
+                        <div class="pl-5 inline-block">{{student.rollnumber}}</div>
+                    </ng-template>
+                </div>
+                <div class="font-serif h-8"><span class="font-semibold">email:</span>
+                    <div *ngIf="update; then thenBlock3 else elseBlock3"></div>
+                    <ng-template #thenBlock3>
+                        <input type="text" name="" [(ngModel)]="student.email" [placeholder]="student.email"
+                            class="h-5 rounded-xl bg-[#ffffff]  focus:border-[1px] border-[#C00B09] w-48 text-[1.2rem] px-5 focus:outline-none"
+                            id="">
+                    </ng-template>
+                    <ng-template #elseBlock3>
+                        <div class="pl-5 inline-block"> {{student.email}}</div>
+                    </ng-template>
+                </div>
+            </div>
+            <div class="flex justify-around">
+                <button [ngClass]="{'bg-[#1ec019]':!update,'bg-[#627b4c]':update}"
+                    class=" font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg  my-[4%] self-center  lg:h-12 text-xl w-[40%]   focus:outline-none px-5"
+                    (click)="updateStu()">{{update?'Save':
+                    'Update'}}</button>
+                <button routerLink="/login"
+                    class="hover:bg-[#c01919] bg-[#c45c4f] font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg w-[40%] my-[2%] self-center  lg:h-12  text-xl  focus:outline-none px-5"
+                    (click)="delPro()">Delete</button>
+            </div>
+        </ng-template>
+        <ng-template #elseBlock>
+            <button routerLink="/login"
+                class="hover:bg-[#c01919] bg-[#c45c4f] font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg w-[40%] my-[2%] self-center  lg:h-12  text-xl  focus:outline-none px-5">Login</button>
+        </ng-template>
+    </div>
+</div>

@@ -1,44 +1,20 @@
-<div class="bg-[#d0e8e1] relative flex lg:flex-col justify-between rounded-tl-[20%] rounded-lg my-5 px-10 py-2 text-[1.2rem]">
+<div
+    class="bg-[#d0e8e1] relative flex lg:flex-col justify-between rounded-tl-[20%] rounded-lg my-5 px-10 py-2 text-[1.2rem]">
     <div
         class="rounded-[50%]  w-8 h-8 absolute top-0 left-0  flex justify-center items-center font-extrabold bg-[#af413d] text-white  ">
-        {{index+1}}</div>
+        {{index+1}}
+    </div>
     <div class="flex flex-col lg:flex-row lg:justify-around lg:px-[10%]">
         <div class="font-serif h-8"><span class="font-semibold"> name:</span>
-            <div *ngIf="update; then thenBlock1 else elseBlock1"></div>
-            <ng-template #thenBlock1>
-                <input type="text" name="" [(ngModel)]="stud.name"
-                [placeholder]="stud.name"
-                    class="h-5 rounded-xl bg-[#ffffff]  focus:border-[1px] border-[#C00B09] w-48 text-[1.2rem] px-5 focus:outline-none"
-                    id="">
-            </ng-template>
-            <ng-template #elseBlock1 ><div class="pl-5 inline-block"> {{student.name}} </div></ng-template>
+            <div class="pl-5 inline-block"> {{student.name}} </div>
 
         </div>
         <div class="font-serif h-8"><span class="font-semibold">rollnumber: </span>
-            <div *ngIf="update; then thenBlock2 else elseBlock2"></div>
-            <ng-template #thenBlock2>
-                <input type="text" name="" [(ngModel)]="stud.rollnumber" [placeholder]="student.rollnumber"
-                    class="h-5 w-48 rounded-xl bg-[#ffffff]  focus:border-[1px] border-[#C00B09]  text-[1.2rem] px-5 focus:outline-none"
-                    id="">
-            </ng-template>
-            <ng-template #elseBlock2><div class="pl-5 inline-block"> {{student.rollnumber}}</div></ng-template>
+            <div class="pl-5 inline-block"> {{student.rollnumber}}</div>
         </div>
         <div class="font-serif h-8"><span class="font-semibold">email:</span>
-            <div *ngIf="update; then thenBlock3 else elseBlock3"></div>
-            <ng-template #thenBlock3>
-                <input type="text" name="" [(ngModel)]="stud.email"
-                [placeholder]="stud.email"
-                    class="h-5 rounded-xl w-48 bg-[#ffffff]  focus:border-[1px] border-[#C00B09]  text-[1.2rem] px-5 focus:outline-none"
-                    id="">
-            </ng-template>
-            <ng-template #elseBlock3> <div class="pl-5 inline-block">{{student.email}}</div></ng-template>
+            <div class="pl-5 inline-block">{{student.email}}</div>
         </div>
     </div>
-    <div class="flex flex-col space-y-1 lg:space-y-0 lg:flex-row lg:justify-end lg:space-x-4 lg:mt-4 lg:px-[10%]">
-        <button class="w-20 p-1 rounded-lg hover:scale-[1.02] bg-red-800 text-white"
-            (click)="removeStu()">Delete</button>
-        <button [ngClass]="{'bg-[#4C7B6A]':!update,'bg-[#627b4c]':update}"
-            class="w-20 p-1 rounded-lg hover:scale-[1.02]  text-white" (click)="updateStu()">{{update?'Save':
-            'Update'}}</button>
-    </div>
+
 </div>

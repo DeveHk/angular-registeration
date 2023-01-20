@@ -1,29 +1,57 @@
 <div class=" w-[100%] min-h-[100vh] flex items-center flex-col ">
-    <div class="text-3xl px-[10%] lg:px-[25%] my-6 self-start ">Student Registration Form</div>
+    <div class="text-3xl px-[10%] lg:px-[25%] my-6 self-start ">Student Login</div>
 
-    <div
-        class=" bg-[#3b4a40] w-[80%]  h-[70vh] rounded-xl shadow-2xl  lg:w-[50%] lg:h-[80vh] flex flex-col p-8 lg:p-12 text-white relative ">
-        <div [ngClass]="{'hidden':!sub}" class="text-[#7ffb6c]  text-lg absolute top-2 ">Registered Succesfully!</div>
-        <div class="font-semibold text-2xl">Register with us!</div>
+    <div [ngClass]="{'h-[87vh] lg:h-[87vh]':!log, 'h-[70vh] lg:h-[80vh]':log}"
+        class=" bg-[#3b4a40] w-[80%]   rounded-xl shadow-2xl  md:w-[50%] lg:w-[35%]  flex flex-col p-8 lg:p-12 text-white relative ">
+
+        <div *ngIf="accessTocken; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+    <div class="flex flex-col align-middle justify-center h-[100%]">
+        <div class="text-center text-5xl font-bold drop-shadow-gl mb-10 ">You Are Logged In</div>
+        <div class="flex justify-around">
+        <button class="bg-[#1ec019] font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg  my-[4%] self-center  lg:h-12 text-xl w-[40%]   focus:outline-none px-5" (click)="logOut()">Log Out</button>
+        <button routerLink="/profile" class="hover:bg-[#c01919] bg-[#c45c4f] font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg w-[40%] my-[2%] self-center  lg:h-12  text-xl  focus:outline-none px-5">Profile</button>
+    </div>
+    </div>
+</ng-template>
+<ng-template #elseBlock>
+    <div  class="text-red-200 top-4 text-xs absolute">{{errorMsg}}</div>
+        <div class="font-semibold text-2xl">Login Here!</div>
+        <div  [ngClass]="{'hidden':!logging}" class="loader ease-linear rounded-[50%] border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 absolute right-10"></div>
         <div [ngClass]="{'invisible':!error}" class="text-red-200  text-xs">*Fill all fields</div>
         <div class="my-[4%] md:my-[3%] flex flex-col space-y-2">
-            <label for="name" class="">Your name</label>
-            <input type="text" id="name" [(ngModel)]="student.name"
+            <label for="name" class="">User Name</label>
+            <input type="text" id="name" [(ngModel)]="user.user"
                 class="h-12 rounded-xl bg-[#a0bfab]  focus:border-[4px] border-[#354138] text-xl px-5 focus:outline-none">
         </div>
 
-        <div class="my-[4%] md:my-[3%] flex flex-col space-y-2">
-            <label for="rollnumber" class="">Your roll number</label>
-            <input type="text" id="rollnumber" [(ngModel)]="student.rollnumber"
+        <div class="my-[4%] md:my-[3%] flex flex-col space-y-2 relative">
+            <label for="rollnumber" class="">Password</label>
+            <input  type="password" id="rollnumber" [(ngModel)]="user.password"
                 class="h-12 rounded-xl bg-[#a0bfab]  focus:border-[4px] text-xl border-[#354138] focus:outline-none px-5">
+            
         </div>
-        <div class="my-[4%] md:my-[3%] flex flex-col space-y-2">
-            <label for="email" class="">Your email</label>
-            <input type="email" id="email" [(ngModel)]="student.email"
+        <div class="my-[4%] md:my-[3%] flex flex-col space-y-2" [ngClass]="{'hidden':log}">
+            <label for="email" class="">confirm password</label>
+            <input type="password" id="email" [(ngModel)]="pass"
                 class="h-12 rounded-xl bg-[#a0bfab]  focus:border-[4px] border-[#354138] px-5 text-xl focus:outline-none">
         </div>
-        <button type="submit"
-            class="bg-[#d32822]  h-10 rounded-lg w-[80%] my-[4%] self-center  lg:h-12 lg:w-[60%] text-xl  focus:outline-none px-5"
-            (click)="onClick()"> Register </button>
+        <button type="logmit" [ngClass]="{'hidden':!log}"
+            class="bg-[#1ec019] font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg  w-[80%] my-[4%] self-center  lg:h-12 lg:w-[60%] text-xl  focus:outline-none px-5"
+            (click)="login()"> Login </button>
+        <div [ngClass]="{'invisible':!log}" class="border-t-2 pl-[10%] text-[#eef835]">new user?</div>
+        <button type="logmit"
+            class="hover:bg-[#c01919] bg-[#c45c4f] font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg w-[80%] my-[2%] self-center  lg:h-12 lg:w-[60%] text-xl  focus:outline-none px-5"
+            (click)="log? toggleLog() : signUp()" > SignUp </button>
+        <button type="logmit" [ngClass]="{'hidden':log}"
+            class="bg-[#1ec019] font-semibold shadow-md hover:shadow-2xl hover:scale-[1.01] transition-all duration-150 h-10 rounded-lg  w-[80%] my-[4%] self-center  lg:h-12 lg:w-[60%] text-xl  focus:outline-none px-5"
+            (click)="toggleLog()"> <- Login </button>
+</ng-template>
+
+
+
+
+        
     </div>
+
 </div>

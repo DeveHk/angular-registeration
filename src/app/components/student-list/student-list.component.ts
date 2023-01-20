@@ -11,7 +11,6 @@ export class StudentListComponent {
   constructor(private student:StudentsService ){}
   ngOnInit():void{
     this.student.getStudents().subscribe((Data)=>{
-      console.log(Data)
       this.studentList=Data
     })
   }
